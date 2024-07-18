@@ -1,3 +1,12 @@
 2022/09/13 09:52:09 [emerg] 16120#18744: CreateFile() "E:\2022新版课程\苍穹外卖项目\授课资料\day01\资料\前端运行环境\nginx-1.20.2/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
 2022/09/19 14:13:10 [emerg] 6884#1840: CreateFile() "E:\2022新版课程\苍穹外卖项目\授课资料\day01\资料\前端运行环境\nginx-1.20.2/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
 2023/03/04 10:52:01 [emerg] 12092#12960: CreateFile() "E:\授课\北京JavaEE就业406期\苍穹外卖项目\资料\day01\前端运行环境\nginx-1.20.2/conf/nginx.conf" failed (1113: No mapping for the Unicode character exists in the target multi-byte code page)
+2024/07/18 21:50:48 [emerg] 18380#8996: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2024/07/18 21:53:33 [emerg] 17988#10768: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2024/07/18 21:54:06 [emerg] 32336#7064: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2024/07/18 21:54:21 [emerg] 2228#33736: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2024/07/18 21:55:24 [emerg] 11352#34320: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2024/07/18 21:57:29 [emerg] 13296#5736: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2024/07/18 21:57:38 [emerg] 35096#3208: bind() to 0.0.0.0:80 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2024/07/18 22:00:39 [error] 980#5104: *1 CreateFile() "C:\Users\12944\Desktop\sky-take-out\nginx-1.20.2/html/sky/static/css/chunk-elementUI.68c70ad5.css" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /static/css/chunk-elementUI.68c70ad5.css HTTP/1.1", host: "localhost:90", referrer: "http://localhost:90/"
+2024/07/18 22:00:39 [error] 980#5104: *1 CreateFile() "C:\Users\12944\Desktop\sky-take-out\nginx-1.20.2/html/sky/static/img/hm-logo5.a107c883.png" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /static/img/hm-logo5.a107c883.png HTTP/1.1", host: "localhost:90", referrer: "http://localhost:90/"
