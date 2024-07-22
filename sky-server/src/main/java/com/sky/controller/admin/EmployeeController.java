@@ -14,6 +14,8 @@ import com.sky.vo.EmployeeLoginVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.Header;
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -132,8 +134,18 @@ public class EmployeeController {
      * @return
      */
     @PutMapping
+    @ApiOperation("编辑员工信息")
     public Result update(@RequestBody EmployeeDTO employeeDTO) {
         employeeService.update(employeeDTO);
+        return Result.success();
+    }
+    //TODO 修改员工密码
+    @PutMapping("/editPassword")
+    @ApiOperation("修改员工密码")
+    public Result editPassword(@RequestBody EmployeeDTO employeeDTO, HttpRequest httpRequest){
+        Header[] tokens = httpRequest.getHeaders("token");
+
+
         return Result.success();
     }
 }

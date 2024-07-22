@@ -6,3 +6,6 @@ sky:
     database: sky_take_out
     username: root
     password: 1925392412
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    bucket-name: sky-take-out-wangyulong
