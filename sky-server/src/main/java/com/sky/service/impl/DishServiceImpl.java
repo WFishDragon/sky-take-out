@@ -2,14 +2,18 @@ package com.sky.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.constant.MessageConstant;
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.DishFlavorsMapper;
 import com.sky.mapper.DishMapper;
+import com.sky.mapper.SetmealDishMapper;
+import com.sky.mapper.SetmealMapper;
 import com.sky.result.PageResult;
-import com.sky.result.Result;
+
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +37,8 @@ public class DishServiceImpl implements DishService {
     @Autowired
     private DishFlavorsMapper dishFlavorsMapper;
 
+    @Autowired
+    private SetmealDishMapper setmealDishMapper;
     //开启事务管理
     @Transactional
     @Override
@@ -68,5 +74,32 @@ public class DishServiceImpl implements DishService {
         PageHelper.startPage(dishPageQueryDTO.getPage(),dishPageQueryDTO.getPageSize());
         Page<DishVO> page = dishMapper.pageQuery(dishPageQueryDTO);
         return new PageResult(page.getTotal(),page.getResult());
+    }
+
+    /**
+     * 菜品批量删除
+     * @param ids
+     */
+    @Override
+    public void deleteBatch(List<Long> ids) {
+        //查询数据库判断是否起售中
+        for (Long id: ids){
+            Dish dish = dishMapper.getById(id);
+            if(dish.getStatus() == 1) {
+                throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
+            }
+        }
+        //查询是否被套餐关联
+        List<Long> setmealId = setmealDishMapper.getSetmealIdsByDishIds(ids);
+        if(setmealId != null && setmealId.size() > 0) {
+            throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
+        }
+        //删除菜品
+        for (Long id : ids) {
+            dishMapper.deleteById(id);
+            //删除口味表
+            dishFlavorsMapper.deleteByDishId(id);
+        }
+
     }
 }
