@@ -81,6 +81,7 @@ public class DishServiceImpl implements DishService {
      * @param ids
      */
     @Override
+    @Transactional
     public void deleteBatch(List<Long> ids) {
         //查询数据库判断是否起售中
         for (Long id: ids){
@@ -95,10 +96,56 @@ public class DishServiceImpl implements DishService {
             throw new DeletionNotAllowedException(MessageConstant.DISH_BE_RELATED_BY_SETMEAL);
         }
         //删除菜品
-        for (Long id : ids) {
-            dishMapper.deleteById(id);
-            //删除口味表
-            dishFlavorsMapper.deleteByDishId(id);
+//        for (Long id : ids) {
+//            dishMapper.deleteById(id);
+//            //删除口味表
+//            dishFlavorsMapper.deleteByDishId(id);
+//        }
+        //根据id批量删除菜品
+        dishMapper.deleteByIds(ids);
+        //根据id批量删除口味
+        dishFlavorsMapper.deleteByDishIds(ids);
+    }
+
+    /**
+     * 根据id查询菜品
+     * @param id
+     * @return
+     */
+    @Override
+    public DishVO getByIdWithFlavor(Long id) {
+        //根据id查询菜品信息
+        Dish dish = dishMapper.getById(id);
+        //根据id查询菜品口味
+        List<DishFlavor> dishFlavors = dishFlavorsMapper.getByDishId(id);
+        //对两种属性进行封装
+        DishVO dishVO = new DishVO();
+        BeanUtils.copyProperties(dish, dishVO);
+        dishVO.setFlavors(dishFlavors);
+        return dishVO;
+    }
+
+    /**
+     * 根据id修改菜品信息和口味
+     * @param dishDTO
+     */
+    @Override
+    public void updateWithFlavor(DishDTO dishDTO) {
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dishDTO, dish);
+        //修改菜品信息
+        dishMapper.updateWithFlavor(dish);
+        //删除口味信息
+        dishFlavorsMapper.deleteByDishId(dish.getId());
+        //将传入的口味信息进行添加
+        List<DishFlavor> flavors = dishDTO.getFlavors();
+        if(flavors != null && flavors.size() > 0) {
+            //设置dishFlavor的dishId外键
+            flavors.forEach(dishFlavor -> {
+                dishFlavor.setDishId(dishDTO.getId());
+            });
+            //向口味表插入n条数据
+            dishFlavorsMapper.insertBatch(flavors);
         }
 
     }
