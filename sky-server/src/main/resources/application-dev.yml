@@ -9,3 +9,7 @@ sky:
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
     bucket-name: sky-take-out-wangyulong
+  redis:
+    port: 6379
+    host: localhost
+    database: 0
