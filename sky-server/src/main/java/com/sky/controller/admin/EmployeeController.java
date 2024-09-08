@@ -139,7 +139,12 @@ public class EmployeeController {
         employeeService.update(employeeDTO);
         return Result.success();
     }
-    //TODO 修改员工密码
+
+    /**
+     * 修改员工密码
+     * @param passwordEditDTO
+     * @return
+     */
     @PutMapping("/editPassword")
     @ApiOperation("修改员工密码")
     public Result editPassword(@RequestBody PasswordEditDTO passwordEditDTO){
