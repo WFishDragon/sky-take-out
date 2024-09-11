@@ -71,7 +71,7 @@ public interface DishMapper {
      * @param dish
      * @return
      */
-    List<DishVO> list(Dish dish);
+    List<Dish> list(Dish dish);
 
     /**
      * 获取菜品和套餐下的菜品相关联的信息
