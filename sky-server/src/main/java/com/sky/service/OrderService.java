@@ -26,7 +26,7 @@ public interface OrderService {
      * 取消订单
      * @param id
      */
-    void cancel(Long id);
+    void cancel(Long id) throws Exception;
 
     /**
      * 分页查询历史订单
@@ -49,4 +49,10 @@ public interface OrderService {
      * @param outTradeNo
      */
     void paySuccess(String outTradeNo);
+
+    /**
+     * 再来一单
+     * @param id
+     */
+    void repetition(Long id);
 }
