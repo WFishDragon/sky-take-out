@@ -136,6 +136,21 @@ git clone https://github.com/WFishDragon/sky-take-out.git
 
 微信小程序直接运行即可进入
 
+### 系统截图
+#### 网页管理端
+![alt text](images/image-6.png)
+![alt text](images/image-7.png)
+![alt text](images/image-8.png)
+![alt text](images/image-9.png)
+![alt text](images/image-10.png)
+![alt text](images/image-11.png)
+![alt text](images/image-12.png)
+#### 用户小程序端
+![alt text](images/image-13.png)
+![alt text](images/image-14.png)
+![alt text](images/image-15.png)
+![alt text](images/image-16.png)
+![alt text](images/image-17.png)
 ### 开发的架构
 + 分层构架
 + 云服务构架
